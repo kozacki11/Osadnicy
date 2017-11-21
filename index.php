@@ -28,8 +28,10 @@ Haslo: </br><input type="password" name="password" /> </br></br>
 <input type ="submit" value="zaloguj się" />
 </form>
 <?php
+
 if(isset($_SESSION['blad']))
 echo $_SESSION['blad'];
+
 ?>
 </body>
 </html>
