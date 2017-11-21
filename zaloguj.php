@@ -1,6 +1,12 @@
 {
 <?php
 session_start();
+if((!isset($_POST['login'])) ||  ($_POST['password']))
+{
+	header('Location:index.php');
+	exit();
+}
+
 require_once "connect.php";
 
 $connecting = @new mysqli($host, $db_user, $db_password, $db_name);
@@ -13,10 +19,13 @@ else
 $login = $_POST['login'];
 $password = $_POST['password'];
 
+$login = htmlentities($login, ENT_QUOTES, "UTF-8");
+$password = htmlentities($password, ENT_QUOTES, "UTF-8");
 
-$sql = "SELECT * FROM uzytkownicy WHERE user='$login' AND pass='$password'";
-
-if($result = @$connecting->query($sql))
+if($result = $connecting->query(
+sprintf("SELECT * FROM uzytkownicy WHERE user='%s' AND pass='%s'",
+mysqli_real_escape_string($connecting,$login),
+mysqli_real_escape_string($connecting,$password))))
 {
 	$ile_userow = $result->num_rows;
 	if($ile_userow > 0)
