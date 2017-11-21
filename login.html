@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+            integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+            integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.min.css">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-default">
+        <a class="navbar-brand" href="#">Strona główna</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" href="#">Zlecenia zamknięte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" href="#">Sprzęt na stanie</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav nav-flex-icons">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><strong>Wyloguj</strong></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>LP</th>
+                    <th>ID KLIENTA</th>
+                    <th>DATA</th>
+                    <th>MIASTO</th>
+                    <th>ULICA</th>
+                    <th>TECHNIK</th>
+                    <th>WO</th>
+                    <th>STATUS</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>9822</td>
+                    <td>2017-10-05 - 13:00-15:00</td>
+                    <td>Warszawa</td>
+                    <td>Kolorowa 21</td>
+                    <td>TECHNIK 2</td>
+                    <td>143257/<span class="badge badge-info">CN</span></td>
+                    <td>
+                        <button type="button" class="btn btn-success btn-sm waves-effect waves-light">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Zamknij zlecenie
+                        </button>
+                        <div class="btn-group">
+                            <button class="btn btn-danger btn-sm dropdown-toggle waves-effect waves-light" type="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Niewykonane...
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-left" x-placement="bottom-start"
+                                 style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                <a class="dropdown-item" href="#">Item 1</a>
+                                <a class="dropdown-item" href="#">Item 2</a>
+                                <a class="dropdown-item" href="#">Item 3</a>
+                                <a class="dropdown-item" href="#">Item 4</a>
+                                <a class="dropdown-item" href="#">Item 5</a>
+                                <a class="dropdown-item" href="#">Item 6</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>3605</td>
+                    <td>2017-10-06 - 15:00-17:00</td>
+                    <td>Gdańsk</td>
+                    <td>Myśliwska 3b</td>
+                    <td>TECHNIK 8</td>
+                    <td>601762/<span class="badge badge-info">CN</span></td>
+                    <td>
+                        <button type="button" class="btn btn-success btn-sm waves-effect waves-light">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Zamknij zlecenie
+                        </button>
+                        <div class="btn-group">
+                            <button class="btn btn-danger btn-sm dropdown-toggle waves-effect waves-light" type="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Niewykonane...
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-left" x-placement="bottom-start"
+                                 style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                <a class="dropdown-item" href="#">Item 1</a>
+                                <a class="dropdown-item" href="#">Item 2</a>
+                                <a class="dropdown-item" href="#">Item 3</a>
+                                <a class="dropdown-item" href="#">Item 4</a>
+                                <a class="dropdown-item" href="#">Item 5</a>
+                                <a class="dropdown-item" href="#">Item 6</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>7827</td>
+                    <td>2017-10-07 - 9:00-11:00</td>
+                    <td>Katowice</td>
+                    <td>Jaśminowa 13</td>
+                    <td>TECHNIK 5</td>
+                    <td>714660/<span class="badge badge-info">CN</span></td>
+                    <td>
+                        <button type="button" class="btn btn-success btn-sm waves-effect waves-light">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Zamknij zlecenie
+                        </button>
+                        <div class="btn-group">
+                            <button class="btn btn-danger btn-sm dropdown-toggle waves-effect waves-light" type="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Niewykonane...
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-left" x-placement="bottom-start"
+                                 style="position: absolute; transform: translate3d(0px, 30px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                <a class="dropdown-item" href="#">Item 1</a>
+                                <a class="dropdown-item" href="#">Item 2</a>
+                                <a class="dropdown-item" href="#">Item 3</a>
+                                <a class="dropdown-item" href="#">Item 4</a>
+                                <a class="dropdown-item" href="#">Item 5</a>
+                                <a class="dropdown-item" href="#">Item 6</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/js/mdb.min.js"></script>
+</body>
+</html>
