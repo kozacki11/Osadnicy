@@ -1,7 +1,7 @@
-{
 <?php
+
 session_start();
-if((!isset($_POST['login'])) ||  ($_POST['password']))
+if ((!isset($_POST['login'])) ||  (!isset($_POST['password'])))
 {
 	header('Location:index.php');
 	exit();
