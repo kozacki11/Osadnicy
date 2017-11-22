@@ -37,6 +37,21 @@ if (isset($_POST['email']))
 	$haslo2 = $_POST['haslo2'];
 
 
+	if ((strlen($haslo1)<8) || (strlen($haslo1)>20))
+	{
+		$wszystko_ok = false;
+		$_SESSION['e_haslo'] = "Hasło musi składać się od 8 do 20 znaków";
+	}
+
+	if ($haslo1!=$haslo2)
+	{
+		$wszystko_ok = false;
+		$_SESSION['e_haslo'] = "Hasła nie są zgodnę!";
+	}
+
+	$haslo_hash = password_hash($haslo1, PASSWORD_DEFAULT);
+	echo $haslo_hash; exit();
+
 	if ($wszystko_ok==true)
 	{
 			//Hurra, wszystkie testy zaliczone, dodajemy gracza do bazy.
@@ -71,21 +86,29 @@ if (isset($_POST['email']))
 
 	Nick: </br> <input type="text" name="nick" /></br>
 	 <?php
-if (isset($_SESSION['e_nick']))
-{
-		echo '<div class="error">'.$_SESSION['e_nick'].'</div>';
-		unset($_SESSION['e_nick']);
-}
+		if (isset($_SESSION['e_nick']))
+		{
+				echo '<div class="error">'.$_SESSION['e_nick'].'</div>';
+				unset($_SESSION['e_nick']);
+		}
 	 ?>
 	E-mail: </br> <input type="text " name="email" /></br>
 	<?php
-if (isset($_SESSION['e_email']))
-{
-	 echo '<div class="error">'.$_SESSION['e_email'].'</div>';
-	 unset($_SESSION['e_email']);
-}
+		if (isset($_SESSION['e_email']))
+		{
+			 echo '<div class="error">'.$_SESSION['e_email'].'</div>';
+			 unset($_SESSION['e_email']);
+		}
 	?>
 	Hasło: </br> <input type="password" name="haslo1" /></br>
+	<?php
+		if (isset($_SESSION['e_haslo']))
+		{
+	 		echo '<div class="error">'.$_SESSION['e_haslo'].'</div>';
+	 		unset($_SESSION['e_haslo']);
+		}
+	?>
+
 	Powtórz Hasło: </br> <input type="password" name="haslo2" /></br>
 
 <label>

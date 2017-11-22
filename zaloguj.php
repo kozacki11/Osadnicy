@@ -17,37 +17,43 @@ echo "Error: ".$connecting->connect_errno;
 }
 else
 $login = $_POST['login'];
-$password = $_POST['password'];
+$haslo = $_POST['password'];
 
 $login = htmlentities($login, ENT_QUOTES, "UTF-8");
-$password = htmlentities($password, ENT_QUOTES, "UTF-8");
 
 if($result = $connecting->query(
-sprintf("SELECT * FROM uzytkownicy WHERE user='%s' AND pass='%s'",
-mysqli_real_escape_string($connecting,$login),
-mysqli_real_escape_string($connecting,$password))))
+sprintf("SELECT * FROM uzytkownicy WHERE user='%s'",
+mysqli_real_escape_string($connecting,$login))))
 {
 	$ile_userow = $result->num_rows;
 	if($ile_userow > 0)
 	{
-		$_SESSION['zalogowany'] = true;
+		$wiersz = $result->fetch_assoc();
+			
+		if (password_verify($haslo, $pass))
+		{
+			$_SESSION['zalogowany'] = true;
+			$_SESSION['id'] = $wiersz['id'];
+			$_SESSION['user'] = $wiersz['user'];
+			$_SESSION['drewno'] = $wiersz['drewno'];
+			$_SESSION['kamien'] = $wiersz['kamien'];
+			$_SESSION['zboze'] = $wiersz['zboze'];
+			$_SESSION['email'] = $wiersz['email'];
+			$_SESSION['dnipremium'] = $wiersz['dnipremium'];
 
-		$row = $result->fetch_assoc();
-		$_SESSION['id'] = $row['id'];
-		$_SESSION['user'] = $row['user'];
-		$_SESSION['drewno'] = $row['drewno'];
-		$_SESSION['kamien'] = $row['kamien'];
-		$_SESSION['zboze'] = $row['zboze'];
-		$_SESSION['email'] = $row['email'];
-		$_SESSION['dnipremium'] = $row['dnipremium'];
-
-		unset($_SESSION['blad']);
-		$result->close();
-		header('Location:gra.php');
+			unset($_SESSION['blad']);
+			$result->free_result();
+			header('Location:gra.php');
+		}
+		else
+		{
+			$_SESSION['blad'] = '<span style="color:red">111Nieprawidłowy login lub hasło!</span>';
+			header('Location:index.php');
+		}
 	}
 	else
 	{
-		$_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
+		$_SESSION['blad'] = '<span style="color:red">22Nieprawidłowy login lub hasło!</span>';
 		header('Location:index.php');
 	}
 }
