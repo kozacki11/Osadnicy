@@ -18,14 +18,20 @@ if((isset($_SESSION['zalogowany']))&&($_SESSION['zalogowany']==true))
 
 <body>
 Tylko martwi ujrzeli koniec wojny - Platon</br></br>
+
+<a href="rejestracja.php">Rejestracja - załóż darmowe konto!</a>
+</br></br>
+
 <form action="zaloguj.php" method="POST">
 Login: </br><input type="text" name="login" /> </br>
 Haslo: </br><input type="password" name="password" /> </br></br>
 <input type ="submit" value="zaloguj się" />
 </form>
 <?php
+
 if(isset($_SESSION['blad']))
 echo $_SESSION['blad'];
+
 ?>
 </body>
 </html>
