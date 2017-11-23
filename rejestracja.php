@@ -48,10 +48,26 @@ if (isset($_POST['email']))
 		$wszystko_ok = false;
 		$_SESSION['e_haslo'] = "Hasła nie są zgodnę!";
 	}
-
+	//Hashowanie hasła
 	$haslo_hash = password_hash($haslo1, PASSWORD_DEFAULT);
-	//echo $haslo_hash; exit();
+	//Sprawdzanie zaznaczonego regulaminu
+	if (!isset($_POST['regulamin']))
+	{
+		$wszystko_ok = false;
+		$_SESSION['e_regulamin'] = "Zaakceptuj regulamin";
+	}
 
+	//Bot or not :)
+	/*$secret_key = "6LfcGToUAAAAAMKYqsXakRFHdY5HeuMfEEtq7_wi";
+	$sprawdz = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret_key.'&response='.$_POST['g-recaptcha-response']);
+	$odpowiedz = json_decode($sprawdz);
+
+	if ($odpowiedz->success==false)
+	{
+		$wszystko_ok = false;
+		$_SESSION['e_bot'] = "Potwierdź że nie jesteś botem";
+	}
+*/
 	if ($wszystko_ok==true)
 	{
 			//Hurra, wszystkie testy zaliczone, dodajemy gracza do bazy.
@@ -67,7 +83,6 @@ if (isset($_POST['email']))
 	<meta charset="utf-8" />
 	<meta http=equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>Osadnicy - załóż darmowe konto</title>
-	<script src='https://www.google.com/recaptcha/api.js'></script>
 
 	<style>
 
@@ -113,9 +128,15 @@ if (isset($_POST['email']))
 
 <label>
 	<input type="checkbox" name="regulamin" />Akceptuje regulamin
+	<?php
+		if (isset($_SESSION['e_regulamin']))
+		{
+	 		echo '<div class="error">'.$_SESSION['e_regulamin'].'</div>';
+	 		unset($_SESSION['e_regulamin']);
+		}
+	?>
 </label>
-<div class="g-recaptcha" data-sitekey="6LflyDkUAAAAACRdT8Q_xPoF2PjIhx6UmJfA9Gos"></div>
-</br>
+</br></br>
 <input type="submit" value="Zarejestruj się!" />
 </br>
 <a href="index.php">Wróć do strony logowania</a>
