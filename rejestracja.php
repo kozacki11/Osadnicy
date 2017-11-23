@@ -50,7 +50,7 @@ if (isset($_POST['email']))
 	}
 
 	$haslo_hash = password_hash($haslo1, PASSWORD_DEFAULT);
-	echo $haslo_hash; exit();
+	//echo $haslo_hash; exit();
 
 	if ($wszystko_ok==true)
 	{

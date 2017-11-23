@@ -29,8 +29,7 @@ mysqli_real_escape_string($connecting,$login))))
 	if($ile_userow > 0)
 	{
 		$wiersz = $result->fetch_assoc();
-			
-		if (password_verify($haslo, $pass))
+		if (password_verify($haslo, $wiersz['pass']))
 		{
 			$_SESSION['zalogowany'] = true;
 			$_SESSION['id'] = $wiersz['id'];
@@ -47,13 +46,13 @@ mysqli_real_escape_string($connecting,$login))))
 		}
 		else
 		{
-			$_SESSION['blad'] = '<span style="color:red">111Nieprawidłowy login lub hasło!</span>';
+			$_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
 			header('Location:index.php');
 		}
 	}
 	else
 	{
-		$_SESSION['blad'] = '<span style="color:red">22Nieprawidłowy login lub hasło!</span>';
+		$_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
 		header('Location:index.php');
 	}
 }
