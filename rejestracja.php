@@ -50,18 +50,88 @@ if (isset($_POST['email']))
 	}
 	//Hashowanie hasła
 	$haslo_hash = password_hash($haslo1, PASSWORD_DEFAULT);
+<<<<<<< HEAD
+<<<<<<< HEAD
+	//echo $haslo_hash; exit();
+
+	require_once "connect.php";
+	mysqli_report(MYSQLI_REPORT_STRICT);
+
+	try
+	{
+		$connecting = new mysqli($host, $db_user, $db_password, $db_name);
+		if($connecting->connect_errno!=0)
+		{
+			throw new Exception(mysqli_connect_errno());
+
+		}
+		else
+		{
+				//Czy email już istnieje
+				$result = $connecting->query("SELECT id FROM uzytkownicy WHERE email='$email'");
+				if (!$result) throw new Exception($connecting->error);
+
+				$ile_takich_maili = $result->num_rows;
+				if ($ile_takich_maili>0)
+				{
+				$wszystko_ok = false;
+				$_SESSION['e_email'] = "Istnieje już konto przypisane do tego adresu email";
+				}
+
+				//Czy login już zajęty
+				$result = $connecting->query("SELECT id FROM uzytkownicy WHERE  user='$nick'");
+				if (!$result) throw new Exception($connecting->error);
+
+				$ile_takich_nick = $result->num_rows;
+				if ($ile_takich_nick>0)
+				{
+				$wszystko_ok = false;
+				$_SESSION['e_nick'] = "Istnieje już konto z takim nickiem";
+				}
+
+				if ($wszystko_ok==true)
+				{
+						//Hurra, wszystkie testy zaliczone, dodajemy gracza do bazy.
+						if ($connecting->query("INSERT INTO  uzytkownicy VALUES (NULL, '$nick', '$haslo_hash', '$email', 100, 100, 100, 14)"))
+						{
+							$_SESSION['udanarejestracja'] = true;
+							header('Location: witamy.php');
+						}
+						else
+						{
+						throw new Exception($connecting->error);
+						}
+
+				}
+
+				$connecting->close();
+		}
+	}
+	catch (Exception $e)
+=======
+=======
+>>>>>>> f5eb4768ce94f9125668ec8b5df1ecb89b3fe472
 	//Sprawdzanie zaznaczonego regulaminu
 	if (!isset($_POST['regulamin']))
 	{
 		$wszystko_ok = false;
 		$_SESSION['e_regulamin'] = "Zaakceptuj regulamin";
 	}
+<<<<<<< HEAD
 
 	//Bot or not :)
 	/*$secret_key = "6LfcGToUAAAAAMKYqsXakRFHdY5HeuMfEEtq7_wi";
 	$sprawdz = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret_key.'&response='.$_POST['g-recaptcha-response']);
 	$odpowiedz = json_decode($sprawdz);
 
+=======
+
+	//Bot or not :)
+	/*$secret_key = "6LfcGToUAAAAAMKYqsXakRFHdY5HeuMfEEtq7_wi";
+	$sprawdz = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret_key.'&response='.$_POST['g-recaptcha-response']);
+	$odpowiedz = json_decode($sprawdz);
+
+>>>>>>> f5eb4768ce94f9125668ec8b5df1ecb89b3fe472
 	if ($odpowiedz->success==false)
 	{
 		$wszystko_ok = false;
@@ -69,10 +139,10 @@ if (isset($_POST['email']))
 	}
 */
 	if ($wszystko_ok==true)
+>>>>>>> f5eb4768ce94f9125668ec8b5df1ecb89b3fe472
 	{
-			//Hurra, wszystkie testy zaliczone, dodajemy gracza do bazy.
-			echo "Udana walidacja";
-			exit();
+		echo '<span style="color:red;">Błąd serwera! Przepraszamy za niedogodoności i prosimy o rejestracje w innym terminie</span>';
+		echo "</br> Informacje developerskie: ".$e;
 	}
 }
 
