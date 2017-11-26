@@ -50,8 +50,7 @@ if (isset($_POST['email']))
 	}
 	//Hashowanie hasła
 	$haslo_hash = password_hash($haslo1, PASSWORD_DEFAULT);
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	//echo $haslo_hash; exit();
 
 	require_once "connect.php";
@@ -108,42 +107,40 @@ if (isset($_POST['email']))
 		}
 	}
 	catch (Exception $e)
-=======
-=======
->>>>>>> f5eb4768ce94f9125668ec8b5df1ecb89b3fe472
+    {
+        if ($wszystko_ok==true)
+        {
+            echo '<span style="color:red;">Błąd serwera! Przepraszamy za niedogodoności i prosimy o rejestracje w innym terminie</span>';
+            echo "</br> Informacje developerskie: ".$e;
+        }
+    }
+
 	//Sprawdzanie zaznaczonego regulaminu
 	if (!isset($_POST['regulamin']))
 	{
 		$wszystko_ok = false;
 		$_SESSION['e_regulamin'] = "Zaakceptuj regulamin";
 	}
-<<<<<<< HEAD
+
 
 	//Bot or not :)
 	/*$secret_key = "6LfcGToUAAAAAMKYqsXakRFHdY5HeuMfEEtq7_wi";
 	$sprawdz = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret_key.'&response='.$_POST['g-recaptcha-response']);
 	$odpowiedz = json_decode($sprawdz);
 
-=======
 
 	//Bot or not :)
 	/*$secret_key = "6LfcGToUAAAAAMKYqsXakRFHdY5HeuMfEEtq7_wi";
 	$sprawdz = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret_key.'&response='.$_POST['g-recaptcha-response']);
 	$odpowiedz = json_decode($sprawdz);
 
->>>>>>> f5eb4768ce94f9125668ec8b5df1ecb89b3fe472
+
 	if ($odpowiedz->success==false)
 	{
 		$wszystko_ok = false;
 		$_SESSION['e_bot'] = "Potwierdź że nie jesteś botem";
 	}
 */
-	if ($wszystko_ok==true)
->>>>>>> f5eb4768ce94f9125668ec8b5df1ecb89b3fe472
-	{
-		echo '<span style="color:red;">Błąd serwera! Przepraszamy za niedogodoności i prosimy o rejestracje w innym terminie</span>';
-		echo "</br> Informacje developerskie: ".$e;
-	}
 }
 
  ?>
